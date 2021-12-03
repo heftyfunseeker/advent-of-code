@@ -25,15 +25,15 @@ pub mod day_1 {
             .map(|l| l.parse::<usize>().unwrap())
             .collect();
 
-        lines
-            .windows(4)
-            .fold(0, |acc, window| {
+        lines.windows(4).fold(
+            0,
+            |acc, window| {
                 if window[3] > window[0] {
                     acc + 1
-                }
-                else {
+                } else {
                     acc
                 }
-            })
+            },
+        )
     }
 }
