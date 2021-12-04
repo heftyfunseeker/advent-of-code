@@ -5,5 +5,5 @@ mod day_4;
 mod utils;
 
 fn main() {
-    print!("answer: {}", day_4::day_4::part_1());
+    print!("answer: {}", day_4::day_4::part_2());
 }
