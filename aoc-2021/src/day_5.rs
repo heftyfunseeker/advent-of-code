@@ -24,7 +24,7 @@ pub mod day_5 {
     impl Grid {
         pub fn new() -> Self {
             Grid {
-                // we 'could' use a hashmap to avoid wasted memory, 
+                // we 'could' use a hashmap to avoid wasted memory,
                 // but ripping through a linear array might/probalby faster.
                 // We also optimize for worst case where every grid point
                 // is hit.
@@ -46,8 +46,7 @@ pub mod day_5 {
                     let index = x + p1.1 * GRID_SIZE;
                     self.points[index as usize] += 1;
                 }
-            }
-            else if p1.0 == p2.0 {
+            } else if p1.0 == p2.0 {
                 let y0 = std::cmp::min(p1.1, p2.1);
                 let y1 = std::cmp::max(p1.1, p2.1);
                 for y in y0..=y1 {
@@ -55,7 +54,8 @@ pub mod day_5 {
                     self.points[index as usize] += 1;
                 }
             } else {
-                let slope = (start_point.1 - end_point.1) as f32 / (start_point.0 - end_point.0) as f32;
+                let slope =
+                    (start_point.1 - end_point.1) as f32 / (start_point.0 - end_point.0) as f32;
                 if slope.abs() == 1.0 {
                     let step = slope as i32;
                     while start_point.0 <= end_point.0 {
