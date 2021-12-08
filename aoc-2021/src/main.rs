@@ -9,5 +9,5 @@ mod day_6;
 mod utils;
 
 fn main() {
-    print!("answer: {}", day_6::day_6::part_1());
+    print!("answer: {}", day_6::day_6::simulate_lantern_spawns());
 }

@@ -1,49 +1,26 @@
 pub mod day_6 {
     use crate::utils;
 
-    const INIT_SPAWN_DELAY: u32 = 8;
-    const SPAWN_RESET_DELAY: u32 = 6;
-
-    struct LanternFish(u32);
-
-    impl LanternFish {
-        pub fn new() -> Self {
-            LanternFish(INIT_SPAWN_DELAY)
+    // use a rotating array to batch tick da fishes
+    fn _simulate_lantern_spawns(fish_counts: &mut [usize; 9], days_to_simulate: usize) -> usize {
+        for _day in 0..days_to_simulate {
+            let new_spawns = fish_counts[0];
+            fish_counts.rotate_left(1);
+            fish_counts[6] += new_spawns;
         }
-
-        pub fn tick(&mut self) -> Option<LanternFish> {
-            if self.0 == 0 {
-                self.0 = SPAWN_RESET_DELAY;
-                Some(LanternFish::new())
-            } else {
-                self.0 -= 1;
-                None
-            }
-        }
+        fish_counts.iter().sum()
     }
 
-    fn simulate_lantern_spawns(fish: &mut Vec<LanternFish>) -> usize {
-        const TOTAL_SIM_DAYS: usize = 80;
-        for _day in 0..TOTAL_SIM_DAYS {
-            let mut spawns = vec![];
-
-            fish.iter_mut().for_each(|fishy| {
-                if let Some(new_fish) = fishy.tick() {
-                    spawns.push(new_fish);
-                }
-            });
-            fish.append(&mut spawns);
-        }
-        fish.len()
-    }
-
-    pub fn part_1() -> usize {
-        let mut fish: Vec<LanternFish> = utils::read_lines("input/day-6.txt")
+    pub fn simulate_lantern_spawns() -> usize {
+        let mut fish_counts: [usize; 9] = utils::read_lines("input/day-6.txt")
             .pop()
             .unwrap()
             .split(',')
-            .map(|fish_timer| LanternFish(fish_timer.parse::<u32>().unwrap()))
-            .collect();
-        simulate_lantern_spawns(&mut fish)
+            .map(|fish_timer| fish_timer.parse::<usize>().unwrap())
+            .fold([0; 9], |mut fish_counts, fishy_timer| {
+                fish_counts[fishy_timer] += 1;
+                fish_counts
+            });
+        _simulate_lantern_spawns(&mut fish_counts, 256)
     }
 }

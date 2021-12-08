@@ -1,6 +1,6 @@
 pub mod day_4 {
     use crate::utils;
-    use std::{borrow::BorrowMut, collections::hash_map::*};
+    use std::collections::hash_map::*;
 
     const BOARD_SIZE: u8 = 5;
     // row, col, value
