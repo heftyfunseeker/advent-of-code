@@ -6,8 +6,9 @@ mod day_3;
 mod day_4;
 mod day_5;
 mod day_6;
+mod day_7;
 mod utils;
 
 fn main() {
-    print!("answer: {}", day_6::day_6::simulate_lantern_spawns());
+    print!("answer: {}", day_7::day_7::part_2());
 }
