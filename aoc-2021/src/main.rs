@@ -15,5 +15,5 @@ mod utils;
 // * we use the 10 signal patterns of each entry to decode the 4 digit number
 //
 fn main() {
-    print!("answer: {}", day_8::day_8::part_1());
+    print!("answer: {}", day_8::day_8::part_2());
 }
