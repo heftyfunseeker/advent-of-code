@@ -1,6 +1,7 @@
 #![allow(dead_code)]
 
 mod day_1;
+mod day_10;
 mod day_2;
 mod day_3;
 mod day_4;
@@ -13,5 +14,5 @@ mod utils;
 
 //
 fn main() {
-    print!("answer: {}", day_9::day_9::part_2());
+    print!("answer: {}", day_10::day_10::part_2());
 }
