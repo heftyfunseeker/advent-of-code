@@ -1,11 +1,11 @@
 use crate::utils;
 
-struct ElfSectionAssigment {
+struct ElfSectionAssignment {
     start_id: usize,
     end_id: usize,
 }
 
-impl From<&str> for ElfSectionAssigment {
+impl From<&str> for ElfSectionAssignment {
     fn from(section_ids: &str) -> Self {
         let mut sections = section_ids.split('-');
         Self {
@@ -15,7 +15,7 @@ impl From<&str> for ElfSectionAssigment {
     }
 }
 
-impl ElfSectionAssigment {
+impl ElfSectionAssignment {
     fn overlaps(&self, other: &Self) -> bool {
         (self.start_id >= other.start_id && self.end_id <= other.end_id)
             || (other.start_id >= self.start_id && other.end_id <= self.end_id)
@@ -27,12 +27,12 @@ impl ElfSectionAssigment {
     }
 }
 
-struct ElfAssigmentPair {
-    elf_1: ElfSectionAssigment,
-    elf_2: ElfSectionAssigment,
+struct ElfAssignmentPair {
+    elf_1: ElfSectionAssignment,
+    elf_2: ElfSectionAssignment,
 }
 
-impl From<&String> for ElfAssigmentPair {
+impl From<&String> for ElfAssignmentPair {
     fn from(pair: &String) -> Self {
         let mut sections = pair.split(',');
         Self {
@@ -42,7 +42,7 @@ impl From<&String> for ElfAssigmentPair {
     }
 }
 
-impl ElfAssigmentPair {
+impl ElfAssignmentPair {
     fn overlaps(&self) -> bool {
         self.elf_1.overlaps(&self.elf_2)
     }
@@ -52,7 +52,7 @@ impl ElfAssigmentPair {
     }
 }
 
-fn iter_elf_assignments(lines: &Vec<String>) -> impl Iterator<Item = ElfAssigmentPair> + '_ {
+fn iter_elf_assignments(lines: &Vec<String>) -> impl Iterator<Item = ElfAssignmentPair> + '_ {
     lines.iter().map(|line| line.into())
 }
 
